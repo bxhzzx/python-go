@@ -16,7 +16,7 @@ def find_outliers(data):
 class OutliersServer(OutliersServicer):
 
     def Detect(self, request, context):
-        logging.info('delete request size: %s', len(request))
+        logging.info('delete request size: %s', len(request.metrics))
         data = np.fromiter((m.value for m in request.metrics), dtype='float64')
         indices = find_outliers(data)
         logging.info('found %d outliers', len(indices))
